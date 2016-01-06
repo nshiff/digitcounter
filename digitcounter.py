@@ -12,29 +12,30 @@ def countdigits(numberstring):
 		counter[somedigit] += 1
 	return counter
 
-guess_prev = '6210001000'	#arbitrary 10-digit num
+def generateguess(counter):
+	guess = ''
+	for i in range(0, len(counter)):
+		digit_as_string = str(counter[i])
+		guess += digit_as_string
+	return guess
+
+guess_prev = '6210011000'	#arbitrary 10-digit num
 guess = ''
 
 solved = False
 while( not solved ):
-	
-
 	counter = countdigits(guess_prev)
-
-	for i in range(0, len(counter)):
-		digit_as_string = str(counter[i])
-		guess += digit_as_string
+	guess = generateguess(counter)
 
 	print('')
 	print(guess_prev)
 	print(counter)
 	print(guess)
-	
 	print(guess == guess_prev)
+
 	if(guess == guess_prev):
 		solved = True
 	else:
-		guess_prev= guess
-		guess = ''
+		guess_prev = guess
 		sleep(1)
 
