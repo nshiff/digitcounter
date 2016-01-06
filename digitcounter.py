@@ -5,17 +5,21 @@
 from time import sleep
 
 
+def countdigits(numberstring):
+	counter = [0,0,0, 0,0, 0,0,0, 0,0]
+	for i in range(0, len(numberstring)):
+		somedigit = int(numberstring[i])
+		counter[somedigit] += 1
+	return counter
+
 guess_prev = '6210001000'	#arbitrary 10-digit num
 guess = ''
 
 solved = False
 while( not solved ):
-	sleep(1)
+	
 
-	counter = [0,0,0, 0,0, 0,0,0, 0,0]
-	for i in range(0, len(guess_prev)):
-		somedigit = int(guess_prev[i])
-		counter[somedigit] += 1
+	counter = countdigits(guess_prev)
 
 	for i in range(0, len(counter)):
 		digit_as_string = str(counter[i])
@@ -32,4 +36,5 @@ while( not solved ):
 	else:
 		guess_prev= guess
 		guess = ''
+		sleep(1)
 
