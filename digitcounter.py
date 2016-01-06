@@ -3,10 +3,11 @@
 # https://www.youtube.com/watch?v=K6Qc4oK_HqY
 #------------------------------------------------------------------------------
 from time import sleep
-
+import random
 
 def countdigits(numberstring):
 	counter = [0,0,0, 0,0, 0,0,0, 0,0]
+
 	for i in range(0, len(numberstring)):
 		somedigit = int(numberstring[i])
 		counter[somedigit] += 1
@@ -19,23 +20,18 @@ def generateguess(counter):
 		guess += digit_as_string
 	return guess
 
-guess_prev = '6210011000'	#arbitrary 10-digit num
-guess = ''
-
-solved = False
-while( not solved ):
-	counter = countdigits(guess_prev)
-	guess = generateguess(counter)
-
-	print('')
-	print(guess_prev)
-	print(counter)
-	print(guess)
-	print(guess == guess_prev)
-
-	if(guess == guess_prev):
-		solved = True
-	else:
+if __name__ == '__main__':
+	
+	guess_prev = '5487454874'
+	guess = '5487454873'
+	while( guess != guess_prev ):
 		guess_prev = guess
-		sleep(1)
+		counter = countdigits(guess_prev)
+		guess = generateguess(counter)
 
+		print('')
+		print(guess_prev)
+		print(counter)
+		print(guess)
+		print(guess == guess_prev)
+		sleep(0.2)
